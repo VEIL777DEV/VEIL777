@@ -12,7 +12,7 @@ export default function Home() {
   const { isConnected } = useAccount()
 
   const CONTRACT_ADDRESS =
-    "0x5d5168680d473Ad735F4Ef3FE0F51CFe68c02fFE"
+    "0xc8086F2A9fE7d098eEBaD998a2c61476B0C72193"
 
   const CONTRACT_ABI = [
     {
