@@ -19,7 +19,7 @@ export default function Home() {
       inputs: [],
       name: "invoke",
       outputs: [],
-      stateMutability: "nonpayable",
+      stateMutability: "payable",
       type: "function",
     },
   ]
