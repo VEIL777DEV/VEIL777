@@ -13,6 +13,7 @@ import {
 
 import {
   mainnet,
+  sepolia,
 } from "wagmi/chains"
 
 import {
@@ -23,7 +24,7 @@ import {
 const config = getDefaultConfig({
   appName: "VEIL//777",
   projectId: "fb6aec98ba1ccca43d88dfdd2074949c",
-  chains: [mainnet],
+  chains: [sepolia],
 })
 
 const queryClient = new QueryClient()
