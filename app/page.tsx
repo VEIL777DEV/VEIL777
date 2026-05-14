@@ -26,10 +26,13 @@ const beginInvocation = async () => {
 
     setRevealed(true)
 
+    setSummoning(false)
+
   } catch (err) {
     console.log(err)
-    alert("Transaction failed")
-  } finally {
+
     setSummoning(false)
+
+    alert("Transaction failed")
   }
 }
