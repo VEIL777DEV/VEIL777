@@ -1,23 +1,21 @@
-mport "./globals.css"
-import Providers from "./providers"
+import "./globals.css";
+import Providers from "./providers";
 
 export const metadata = {
   title: "VEIL777",
   description: "Ethereum Invocation Protocol",
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body>
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }
