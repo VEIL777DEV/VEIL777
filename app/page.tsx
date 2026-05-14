@@ -2,11 +2,14 @@
 
 import { useState } from "react"
 import { ethers } from "ethers"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { useAccount } from "wagmi"
 
 export default function Home() {
   const [summoning, setSummoning] = useState(false)
   const [revealed, setRevealed] = useState(false)
-  const [address, setAddress] = useState("")
+
+  const { isConnected } = useAccount()
 
   const CONTRACT_ADDRESS =
     "0x5d5168680d473Ad735F4Ef3FE0F51CFe68c02fFE"
@@ -21,28 +24,9 @@ export default function Home() {
     },
   ]
 
-  const connectWallet = async () => {
-    try {
-      const eth = (window as any).ethereum
-
-      if (!eth) {
-        alert("Install MetaMask first")
-        return
-      }
-
-      const accounts = await eth.request({
-        method: "eth_requestAccounts",
-      })
-
-      setAddress(accounts[0])
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   const beginInvocation = async () => {
     try {
-      if (!address) {
+      if (!isConnected) {
         alert("Connect wallet first")
         return
       }
@@ -114,14 +98,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col items-center gap-4">
-          <button
-            onClick={connectWallet}
-            className="px-6 py-3 bg-purple-500 text-white rounded-xl font-bold"
-          >
-            {address
-              ? address.slice(0, 6) + "..." + address.slice(-4)
-              : "Connect MetaMask"}
-          </button>
+          <ConnectButton />
 
           <button
             onClick={beginInvocation}
@@ -137,7 +114,9 @@ export default function Home() {
 
         <div className="mt-12 space-y-3 text-left font-mono text-xs text-zinc-400 max-w-xl mx-auto">
           <p>› Contract Connected</p>
-          <p>› Sepolia Network Active</p> {summoning && (
+          <p>› Sepolia Network Active</p>
+
+          {summoning && (
             <p className="text-purple-300">
               › TRANSACTION PENDING...
             </p>
